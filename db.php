@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * Classe que proporciona una coneccion a una base de datos
+ * de potgresSQL (Creo que solo funciona en localhost)
+ */
 class DBconection
 {
    private $dbname;
@@ -38,14 +41,16 @@ class DBconection
       return $resultado->fetchAll(PDO::FETCH_ASSOC);
    }
 
-   public function getUsuarios()
+   public function getUsuario(string $correo, string $contrasena)
    {
+      //Crear query
+      $query = "SELECT * FROM usuarios WHERE correo='$correo' AND contrasena='$contrasena'";
       # Se realiza una consulta general a la tabla usuarios
-      $resultado = $this->pdo->query("SELECT * FROM usuarios;");
+      $resultado = $this->pdo->query($query);
       # Se almacena el arreglo resultante en una variable
       $filas = $resultado->fetchAll(PDO::FETCH_ASSOC);
       # Se tranforma el arreglo a json y se retorna
-      return json_encode($filas);
+      return $filas;
    }
 }
 ?>
