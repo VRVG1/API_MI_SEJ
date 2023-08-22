@@ -15,9 +15,6 @@ Route::get('contact', function () {
     return "Pagina Contact";
 });
 
-Route::get('user/:slug', function ($slug) {
-    return "El usuario es: $slug";
-});
 
 Route::post('login', [User_Controller::class, 'login']);
 // Ruta para almacenar eventos
@@ -30,5 +27,17 @@ Route::delete('event/:id', [Event_Controller::class, 'delete_event']);
 Route::get('event/:id', [Event_Controller::class, 'get_event']);
 // Ruta para actualizar un evento
 Route::post('event/:id', [Event_Controller::class, 'update_event']);
+
+// Usuarios
+// Ruta para crear un usuarios
+Route::post('user', [User_Controller::class, 'post_user']);
+// Ruta para obtener usuarios
+Route::get('user', [User_Controller::class, 'get_users']);
+// Ruta para eliminar un usuario
+Route::delete('user/:id', [User_Controller::class, 'delete_user']);
+// Ruta para obtener solo un usuario
+Route::get('user/:id', [User_Controller::class, 'get_user']);
+// Ruta para actualizar un usuario
+Route::put('user/:id', [User_Controller::class, 'update_user']);
 
 Route::dispatch();
